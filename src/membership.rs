@@ -79,7 +79,7 @@ impl Membership {
         self.stable_set.members()
     }
 
-    pub fn elder_candidates(&self) -> Elders {
+    pub fn elders(&self) -> Elders {
         BTreeSet::from_iter(self.members().take(ELDER_COUNT).map(|m| m.id))
     }
 

@@ -24,8 +24,8 @@ pub struct State {
 }
 
 impl State {
-    fn elder_candidates(&self) -> BTreeSet<Id> {
-        self.membership.elder_candidates()
+    fn elders(&self) -> BTreeSet<Id> {
+        self.membership.elders()
     }
 }
 
@@ -106,22 +106,22 @@ impl Actor for Node {
     ) {
         match msg {
             Msg::Membership(msg) => {
-                let elders = state.elder_candidates();
+                let elders = state.elders();
                 state.to_mut().membership.on_msg(&elders, id, src, msg, o);
             }
             Msg::Handover(msg) => {
-                let elder_candidates = state.elder_candidates();
+                let elder_candidates = state.elders();
                 state
                     .to_mut()
                     .handover
                     .on_msg(elder_candidates, id, src, msg, o)
             }
             Msg::Wallet(msg) => {
-                let elders = state.elder_candidates();
+                let elders = state.elders();
                 state.to_mut().wallet.on_msg(&elders, id, src, msg, o)
             }
             Msg::StartReissue => {
-                let elders = state.elder_candidates();
+                let elders = state.elders();
                 let input = state.wallet.ledger.genesis_dbc.clone();
 
                 let reissue_amount = (0..self.peers.len() + 1)
