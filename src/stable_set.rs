@@ -5,7 +5,7 @@ use std::{
 
 use stateright::actor::Id;
 
-use crate::{fake_crypto::supermajority, handover::Elders};
+use crate::{fake_crypto::supermajority, membership::Elders};
 
 #[derive(Clone, Eq, Hash, Ord, PartialEq, PartialOrd, serde::Serialize, serde::Deserialize)]
 pub struct Member {

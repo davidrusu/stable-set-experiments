@@ -5,10 +5,11 @@ use std::fmt::Debug;
 use stateright::actor::{Id, Out};
 
 use crate::fake_crypto::SigSet;
-use crate::handover::Elders;
 use crate::stable_set::StableSet;
 use crate::{fake_crypto::Sig, stable_set::Member};
 use crate::{Node, ELDER_COUNT};
+
+pub type Elders = BTreeSet<Id>;
 
 #[derive(
     Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, serde::Serialize, serde::Deserialize,
